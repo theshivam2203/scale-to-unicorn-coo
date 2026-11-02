@@ -1,6 +1,6 @@
 import { useState, type ReactNode } from 'react';
 import {
-  BarChart3, Bot, CheckCircle2, ClipboardCheck, FlaskConical, LayoutDashboard, Menu, Plug, RotateCcw, ScrollText, Sun, Users, Workflow, X, AlertTriangle, Info,
+  BarChart3, Bot, CheckCircle2, ClipboardCheck, LayoutDashboard, Menu, Plug, RotateCcw, ScrollText, Sun, Users, Workflow, X, AlertTriangle, Info,
 } from 'lucide-react';
 import { useStore } from '../store/store';
 import { CURRENT_USER, AGENCY } from '../domain/seed';
@@ -23,14 +23,9 @@ export const NAV = [
 
 function Logo() {
   return (
-    <div className="flex items-center gap-2.5">
-      <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-brand-700 text-white">
-        <svg viewBox="0 0 32 32" className="h-5 w-5"><path d="M7 22l5.5-11 4.5 7.5 2.5-3.5 5.5 7" stroke="currentColor" strokeWidth="2.6" fill="none" strokeLinecap="round" strokeLinejoin="round" /></svg>
-      </div>
-      <div className="leading-tight">
-        <div className="text-sm font-semibold text-zinc-900">Scale To Unicorn</div>
-        <div className="text-[11px] font-medium text-brand-700">AI COO</div>
-      </div>
+    <div className="flex items-center gap-2">
+      <img src="/logo.png" alt="Scale To Unicorn" className="h-11 w-auto" />
+      <span className="rounded-md bg-brand-50 px-1.5 py-0.5 text-[10px] font-semibold uppercase tracking-wide text-brand-700">AI COO</span>
     </div>
   );
 }
@@ -68,10 +63,6 @@ export function Layout({ path, children }: { path: string; children: ReactNode }
 
   const sideFooter = (
     <div className="space-y-3">
-      <div className="rounded-lg border border-amber-200 bg-amber-50 p-2.5 text-[11px] leading-snug text-amber-900">
-        <div className="mb-0.5 flex items-center gap-1 font-semibold"><FlaskConical size={12} /> Demo environment</div>
-        Fictional agency & leads. Actions are simulated; nothing leaves this browser.
-      </div>
       <div className="flex items-center gap-2 px-1">
         <Avatar name={CURRENT_USER} size="md" />
         <div className="min-w-0 leading-tight">
@@ -114,13 +105,8 @@ export function Layout({ path, children }: { path: string; children: ReactNode }
             <p className="hidden text-sm text-zinc-500 lg:block">Your AI COO. Your Business, Under Control.</p>
           </div>
           <div className="flex items-center gap-2">
-            <span className="hidden items-center gap-1.5 rounded-full border border-amber-300 bg-amber-50 px-2.5 py-1 text-[11px] font-semibold text-amber-900 sm:inline-flex" title="All external actions are simulated">
-              <span className="h-1.5 w-1.5 animate-pulseDot rounded-full bg-amber-500" />
-              DEMO MODE · simulated actions only
-            </span>
-            <span className="inline-flex rounded-full border border-amber-300 bg-amber-50 px-2 py-1 text-[10px] font-semibold text-amber-900 sm:hidden">DEMO</span>
             <Button size="sm" variant="ghost" icon={RotateCcw} onClick={() => setConfirmReset(true)}>
-              <span className="hidden sm:inline">Reset demo</span>
+              <span className="hidden sm:inline">Reset data</span>
             </Button>
           </div>
         </header>
@@ -137,10 +123,10 @@ export function Layout({ path, children }: { path: string; children: ReactNode }
       <Modal
         open={confirmReset}
         onClose={() => setConfirmReset(false)}
-        title="Reset demo data?"
+        title="Reset data?"
         footer={<><Button onClick={() => setConfirmReset(false)}>Cancel</Button><Button variant="primary" icon={RotateCcw} onClick={() => { resetDemo(); setConfirmReset(false); navigate('/'); }}>Reset to seeded scenario</Button></>}
       >
-        <p className="text-sm text-zinc-600">This restores the 20 seeded leads, tasks, approvals and audit history, and clears the command history. Use it before presenting the demo.</p>
+        <p className="text-sm text-zinc-600">This restores the 20 seeded leads, tasks, approvals and audit history, and clears the command history.</p>
       </Modal>
 
       <div className="pointer-events-none fixed bottom-4 right-4 z-[60] flex w-[calc(100%-2rem)] max-w-sm flex-col gap-2">
