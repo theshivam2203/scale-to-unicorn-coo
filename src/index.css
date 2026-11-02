@@ -1,0 +1,11 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html { -webkit-font-smoothing: antialiased; }
+  body { @apply bg-zinc-50 text-zinc-900; font-feature-settings: 'cv11', 'ss01'; }
+  ::selection { @apply bg-brand-100; }
+}
+
+.recharts-wrapper:focus, .recharts-surface:focus { outline: none; }
